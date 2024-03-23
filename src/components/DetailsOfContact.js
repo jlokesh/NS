@@ -35,7 +35,27 @@ const DetailsOfContact = (props) => {
     
     */
 
-    
+    /* Tab switching script */
+
+    function openCity(evt, cityName) 
+    {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+      
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+      
+    /* Tab switching script */
 
     return (
         <div className='tablediv'>
@@ -43,6 +63,10 @@ const DetailsOfContact = (props) => {
                 <h1 className='contactsheading'><img src={contactsimg} className='contactsheadingimg' width="40" height="35" alt='loading problem...'/>{sortedContacts[props.id]['name']}</h1>
                 <img src={require('../media/i7.png')}  alt='i7' className='searchimage' />
                 <input type="text" placeholder="Search..." className='searchbar' />
+
+
+
+
             </div>
             <table>
                 <thead>
@@ -53,7 +77,7 @@ const DetailsOfContact = (props) => {
                         <th>Salesperson</th>
                         <th>Activities</th>
                         <th>City</th>
-                        <th>Country</th>
+                        <th>Country</th>    
                     </tr>
                 </thead>
                 <tbody>
@@ -68,6 +92,31 @@ const DetailsOfContact = (props) => {
                   </tr>  
                 </tbody>
             </table>
+            <div className='personeditable'>
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
+                    <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+                    </div>
+
+                    <div id="London" class="tabcontent">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>London</h3>
+                    <p>London is the capital city of England.</p>
+                    </div>
+
+                    <div id="Paris" class="tabcontent">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>Paris</h3>
+                    <p>Paris is the capital of France.</p> 
+                    </div>
+
+                    <div id="Tokyo" class="tabcontent">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>Tokyo</h3>
+                    <p>Tokyo is the capital of Japan.</p>
+                    </div>
+                </div>
         </div>
     );
 };
