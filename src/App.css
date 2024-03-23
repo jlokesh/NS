@@ -284,7 +284,6 @@ table
 td,tr,th
 {
   border: solid 1px #ddd;
-  padding: 5px;
   text-align: left;
 }
 
@@ -542,6 +541,14 @@ input[type='checkbox']
   border-bottom: #0070D2 solid 3px;
 }
 
+.tab button.sactive {
+  background-color: white;
+  border: #0070D2 solid 1px;
+  color: #0070D2;
+  border-radius: 10px;
+}
+
+
 /* Style the tab content */
 .tabcontent {
   display: none;
@@ -574,7 +581,7 @@ input[type='checkbox']
   margin-bottom: 20px;
 }
 
-.detailscontacttable .heading, th, td, tr
+.detailscontacttable th, .detailscontacttable td, .detailscontacttable tr,.detailscontacttable .heading
 {
   background-color: white;
   border:none;
@@ -628,13 +635,36 @@ input[type='checkbox']
   background-repeat: no-repeat;
   padding-left: 0px;
 }
+
 .ns:focus
 {
   border:none;
 }
 
 
-.ns:last-child
+.ns1
 {
-  margin-bottom: 50px;
+  color:black;
+  border-radius: 0px;
+  border:none;
+  border-bottom: solid 2px;
+  background-position: 99% 15px;
+  background-size: 15px 15px;
+  background-repeat: no-repeat;
+  padding-left: 0px;
+}
+
+.nb 
+{
+  border:none;
+}
+
+
+.ns
+{
+  border-bottom: solid 2px;
+  background-position: 0% 10px;
+  background-size: 15px 15px;
+  background-repeat: no-repeat;
+  padding-left: 20px;
 }
