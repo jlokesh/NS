@@ -37,6 +37,11 @@ const DetailsOfContact = (props) => {
 
     /* Tab switching script */
 
+    // Take array of lenght 3 usestates.
+    // each one consists of object
+    // change the state of them. 
+
+    /*
     function openCity(evt, cityName) 
     {
         var i, tabcontent, tablinks;
@@ -51,71 +56,85 @@ const DetailsOfContact = (props) => {
         document.getElementById(cityName).style.display = "block";
         evt.currentTarget.className += " active";
     }
+    */
       
       // Get the element with id="defaultOpen" and click on it
-      document.getElementById("defaultOpen").click();
+      //function f1(){document.getElementById("defaultOpen").click();}f1();
       
     /* Tab switching script */
+
+
+
+    var [visibleornot1, setVisibleornot1] = useState({"display":"block"}); 
+    var [visibleornot2, setVisibleornot2] = useState({"display":"none"}); 
+    var [cls1, setcls1] = useState("tablinks active");
+    var [cls2, setcls2] = useState("tablinks");
+    
+
+    var obj1 = {
+        "display":"block"
+    };
+    var obj2 = {
+        "display":"none"
+    };
 
     return (
         <div className='tablediv'>
             <div className='headerabovetable'>
                 <h1 className='contactsheading'><img src={contactsimg} className='contactsheadingimg' width="40" height="35" alt='loading problem...'/>{sortedContacts[props.id]['name']}</h1>
-                <img src={require('../media/i7.png')}  alt='i7' className='searchimage' />
-                <input type="text" placeholder="Search..." className='searchbar' />
-
-
-
 
             </div>
-            <table>
+            <table className='detailscontacttable'>
                 <thead>
                     <tr className='heading'>
-                        <th>Name</th>
+                        <th>Title</th>
+                        <th>Company</th>
                         <th>Phone</th>
                         <th>Email</th>
-                        <th>Salesperson</th>
-                        <th>Activities</th>
-                        <th>City</th>
-                        <th>Country</th>    
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                   <tr>
                   <td>{sortedContacts[props.id]['name']}</td>
-                  <td>{sortedContacts[props.id]['phone']}</td>
                   <td>{sortedContacts[props.id]['email']}</td>
+                  <td>{sortedContacts[props.id]['phone']}</td>
                   <td>{sortedContacts[props.id]['salesperson']}</td>
-                  <td>{sortedContacts[props.id]['activities']}</td>
-                  <td>{sortedContacts[props.id]['city']}</td>
-                  <td>{sortedContacts[props.id]['country']}</td>
+                  <td style={{color:"green"}}>Active<div style={{}}></div></td>
                   </tr>  
                 </tbody>
             </table>
+
             <div className='personeditable'>
-                <div class="tab">
-                    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
-                    <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+                    <div className="tab">
+                        <button className={cls1} onClick={()=>{setVisibleornot1(obj1);setVisibleornot2(obj2);setcls1("tablinks active");setcls2("tablinks");}} id="defaultOpen">Details</button>
+                        <button className={cls2} onClick={()=>{setVisibleornot1(obj2);setVisibleornot2(obj1);setcls1("tablinks");setcls2("tablinks active");}}>Activities</button>
                     </div>
 
-                    <div id="London" class="tabcontent">
-                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                    <h3>London</h3>
-                    <p>London is the capital city of England.</p>
+                    <div id="Details" style={visibleornot1} className="tabcontent">
+                        <br/><br/>
+                        <div>
+                            <input type="text" name='company' placeholder="Company name" className='popuptextbox company ns' />
+                            <input type="text" name='person' placeholder="Individual name" className='popuptextbox person ns' />
+                            <input type="text" name='contacttype' placeholder="Individual name" className='popuptextbox contact ns' />
+                            <input type="text" name='phone' placeholder="Title" className='popuptextbox number ns' />
+                            <input type="text" name='email' placeholder="Account number" className='popuptextbox email ns' />
+                            <input type="text" name='address' placeholder="Job position" className='popuptextbox address ns' />
+                            <input type="text" name='taxid' placeholder="Company name" className='popuptextbox taxid ns' />
+                            <input type="text" name='additionalinfo' placeholder="Contact owner" className='popuptextbox additionalinfo ns' />
+
+                            <button style={{width:"15%", position:"relative", top:"20px", marginLeft:"25%", backgroundColor:"white", color:"black"}} className='popupbutton'>Cancel</button>
+                            <button style={{width:"15%", position:"relative", top:"20px", marginLeft:"50px"}} className='popupbutton'>Save</button>
+                        </div>
+                        
                     </div>
 
-                    <div id="Paris" class="tabcontent">
-                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                    <h3>Paris</h3>
-                    <p>Paris is the capital of France.</p> 
+                    <div id="Activities" style={visibleornot2} className="tabcontent">
+                        <span onClick={()=>this.parentElement.style.display='none'} clasNames="topright"></span>
+                        <h3>Activities</h3>
+                        <p>Activities will be displayee here.</p> 
                     </div>
 
-                    <div id="Tokyo" class="tabcontent">
-                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                    <h3>Tokyo</h3>
-                    <p>Tokyo is the capital of Japan.</p>
-                    </div>
                 </div>
         </div>
     );
